@@ -1,0 +1,15 @@
+name: qrcode_img
+version: 0.1.0
+
+authors:
+  - Hentioe_Cl <me@bluerain.io>
+
+dependencies:
+  qrencode:
+    github: woodruffw/qrencode.cr
+    branch: master
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    version: "~> 4.4.1"
+
+license: MIT
