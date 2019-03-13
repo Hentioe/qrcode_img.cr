@@ -1,8 +1,8 @@
 name: qrcode_img
-version: 0.1.0
+version: 0.1.1
 
 authors:
-  - Hentioe_Cl <me@bluerain.io>
+  - Hentioe <me@bluerain.io>
 
 dependencies:
   qrencode:
