@@ -1,6 +1,6 @@
 # qrcode_img
 
-Generate a QR code image
+Generate QR code image
 
 ## Installation
 
@@ -8,7 +8,7 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  qrencode:
+  qrcode_img:
     github: Hentioe/qrcode_img.cr
     branch: master
 ```
