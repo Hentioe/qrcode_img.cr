@@ -1,6 +1,6 @@
-# qrcode_img
+# QR Code image
 
-Generate QR code image
+Saves the QR Code image according to the input string and supports the specified size(estimated)
 
 ## Installation
 
@@ -24,7 +24,8 @@ sudo apt install libqrencode-dev
 ```` crystal
 require("qrcode_img")
 
-qr = QRcodeImg::QRcode.new("大家好！")
+qr = QRcodeImg::QRcode.new("大家好！", estimated_size = 720)
+qr.real_size # => 714
 qr.save("hello.png")
 ````
 

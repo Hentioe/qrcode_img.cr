@@ -7,35 +7,38 @@ module QRcodeImg
   VERSION = "0.1.1"
 
   class QRcode
-    setter input : String
-    setter meta_table : Array(Array(Bool))
-    setter size : Int32
+    getter input : String
+    getter meta_table : Array(Array(Bool))
+    getter real_size : Int32
 
-    def initialize(@input, @zoom_level = 1)
+    def initialize(@input, estimated_size = nil)
       @meta_table = Array(Array(Bool)).new
-      qr = QRencode::QRcode.new(@input, micro = true)
-      @size = qr.width * @zoom_level
+      qr = QRencode::QRcode.new(@input)
+      zoom_level = estimated_size ? estimated_size / qr.width : 1
+      @meta_table = Array(Array(Bool)).new
+      qr = QRencode::QRcode.new(@input)
+      @real_size = qr.width * zoom_level
       qr.each_row do |row|
         meta_row = Array(Bool).new
         row.each do |byte|
           if QRencode::Util.black? byte
-            @zoom_level.times do
+            zoom_level.times do
               meta_row << true
             end
           else
-            @zoom_level.times do
+            zoom_level.times do
               meta_row << false
             end
           end
         end
-        @zoom_level.times do
+        zoom_level.times do
           @meta_table << meta_row
         end
       end
     end
 
     private def build_canvas
-      canvas = Canvas.new(@size, @size)
+      canvas = Canvas.new(@real_size, @real_size)
 
       row_i, col_i = 0, 0
       @meta_table.each do |row|

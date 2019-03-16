@@ -8,7 +8,8 @@ describe QRcodeImg do
   end
 
   it "save a image" do
-    qr = QRcodeImg::QRcode.new("大家好！")
+    qr = QRcodeImg::QRcode.new("大家好！", estimated_size = 720)
+    qr.real_size.should eq(714)
     qr.save("spec.png")
   end
 end
